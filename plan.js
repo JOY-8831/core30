@@ -21,9 +21,9 @@ const EXERCISES = {
  right:['右側棒式','Right side plank','側向穩定','右前臂支撐、手肘在肩下，抬起骨盆並保持身體對齊。可用屈膝版本。','雙膝彎曲著地，縮短支撐槓桿。']
 };
 Object.entries(EXERCISES).forEach(([id,e])=> EXERCISES[id]={id,name:e[0],en:e[1],function:e[2],cue:e[3],easy:e[4],video:''});
-const MONDAY_SOURCE={url:'https://www.youtube.com/watch?v=wMCFIixwgac',label:'週一五動作原始影片（YouTube）',note:'動作名稱與次數依使用者提供的截圖；順序依六階段重新排列；計時、休息與簡易版為本站改編，非原影片逐秒課表。'};
+const MONDAY_SOURCE={url:'https://www.youtube.com/watch?v=wMCFIixwgac',label:'週一五動作原始影片（YouTube）',note:'動作名稱、次數與順序依使用者提供的截圖；週一保留指定影片順序，反向捲腹後接真空腹。計時、休息與簡易版為本站改編，非原影片逐秒課表。'};
 // Chapter labels/timestamps transcribed from the user's screenshot, not inferred durations.
-const SECOND_SOURCE={url:'https://www.youtube.com/watch?v=v0b5HO1ozWQ',label:'核心循環原始影片（YouTube）',note:'動作名稱與示範時間點依使用者截圖；順序依六階段重新排列；秒數、休息及簡易版為本站改編，時間點不是動作時長。'};
+const SECOND_SOURCE={url:'https://www.youtube.com/watch?v=v0b5HO1ozWQ',label:'核心循環原始影片（YouTube）',note:'動作名稱與示範時間點依使用者截圖；依使用者指定以搖擺登山者起頭，其餘依截圖順序，不套用六階段重排；秒數、休息及簡易版為本站改編，時間點不是動作時長。'};
 const SECOND_CHAPTERS=[
  {id:'moon',name:'新月環繞',time:15,stamp:'0:15',function:'骨盆控制',easy:'改成仰躺交替滑腿，縮小活動範圍。'},
  {id:'rockclimber',name:'搖擺登山者',time:78,stamp:'1:18',function:'抗伸展',easy:'改成高棒式慢速交替收膝，雙手可撐穩固桌面。'},
@@ -61,6 +61,14 @@ const HJ_MOVES={
  hjbalance:['懸空坐姿收膝','Hands-free seated knee tuck','軀幹屈曲','雙手離地向前伸，雙腿伸出後收膝，軀幹配合小幅靠近；慢慢控制，不靠甩動保持平衡。','雙手撐地，或改腳跟沿地滑動的坐姿收腿。']
 };
 Object.entries(HJ_MOVES).forEach(([id,e])=>EXERCISES[id]={id,name:e[0],en:e[1],function:e[2],cue:e[3],easy:e[4],video:'',sourceUrl:HJ_SOURCE.url,stamp:'體結健身原片'});
+const RUN_SOURCE={url:'https://www.youtube.com/watch?v=nYnxjqaBLnw',label:'登山跑／掌撐抬膝循環（YouTube）',note:'動作名稱、順序與秒數依使用者提供；本站補充提示與簡易版。請先觀看原片確認掌撐抬膝版本。'};
+const RUN_MOVES={
+ climbrun:['登山跑','Mountain climber run','手掌在肩下，交替收膝；以腰不塌、骨盆不晃的速度進行，持續呼吸。','改慢速登山走，雙手可撐穩固桌面。'],
+ climbwalk:['登山走','Slow mountain climber','交替慢慢收膝再回位，一腳回穩才換腳，維持軀幹穩定。','雙手撐穩固桌面，減少收膝幅度。'],
+ palmrun:['掌撐抬膝跑','Palm-supported knee raise run','先依來源影片確認掌撐姿勢與抬膝方向；肩膀穩定、不聳肩，以可控制的節奏交替抬膝。','依原片支撐方式改慢速抬膝；不穩或手腕不適就停止。'],
+ palmwalk:['掌撐抬膝走','Palm-supported knee raise walk','沿用前一動作的掌撐姿勢，放慢抬膝節奏，逐腳控制落回，保持呼吸。','減少抬膝幅度，必要時延長休息。']
+};
+Object.entries(RUN_MOVES).forEach(([id,e])=>EXERCISES[id]={id,name:e[0],en:e[1],function:'抗伸展',cue:e[2],easy:e[3],video:'',sourceUrl:RUN_SOURCE.url,stamp:'原片示範'});
 const MUSCLE_FUNCTION={
  '軀幹屈曲':'腹直肌（捲起軀幹）', '骨盆控制':'腹直肌、深層核心（穩住骨盆）',
  '旋轉':'腹內／外斜肌（兩側腰腹）', '抗旋轉':'腹斜肌、腹橫肌（抵抗扭轉）',
@@ -72,7 +80,7 @@ Object.values(EXERCISES).forEach(e=>e.muscles=MUSCLE_FUNCTION[e.function]);
 const TRAINING_STAGES=['下腹／抬腿控制','由下往上','腹斜肌','中段屈曲','由上往下旋轉','由上往下屈曲'];
 const STAGE_IDS=[['hjflutter','slide','bug','reachbug','bentlower','marchsupine','bugpress','moon','legclap'],['reverse','reversepause'],['heelreach','sidebikeleft','sidebikeright','climbertilt','scissorleft','scissorright'],['hjsupported','hjbalance','cocoon','seatedknee','frogv'],['hjtwist','twist','cross','bicycle'],['curl','tabletopcurl','longcurl','toecrunch','corpsecrunch']];
 STAGE_IDS.forEach((ids,i)=>ids.forEach(id=>EXERCISES[id].stage=i+1));
-const SERRATUS_IDS=['updown','bird','birdcurl','march','taps','step','plank','left','right','plankreach','bearstep','rockclimber','climbertilt'];
+const SERRATUS_IDS=['climbrun','climbwalk','palmrun','palmwalk','updown','bird','birdcurl','march','taps','step','plank','left','right','plankreach','bearstep','rockclimber','climbertilt'];
 Object.values(EXERCISES).forEach(e=>{
  const f=e.function;
  e.regions=f==='啟動'?['transverse','pelvic']:f==='深層核心控制'?['transverse']:f==='軀幹屈曲'?['rectus']:['旋轉','側向穩定','抗旋轉'].includes(f)?['external','internal','transverse']:f==='穩定'?['rectus','external','internal','transverse']:['rectus','transverse'];
@@ -108,17 +116,22 @@ function makePlan(start){return Array.from({length:30},(_,i)=>{
  const date=dateAt(start,i),weekend=[0,6].includes(date.getDay()),phase=Math.min(3,Math.floor(i/7)),p=PHASES[phase];
  const light=!weekend&&date.getDay()===3;
  if(date.getDay()===1){
-  const ids=[...orderExercises(['cocoon','twist','updown','reverse']),'vacuum'],work=45+phase*5,rest=20;
+  const ids=['cocoon','twist','updown','reverse','vacuum'],work=45+phase*5,rest=20;
   const segments=[{type:'work',id:'breath',seconds:30,round:0},{type:'rest',seconds:5,round:0,transition:true,label:'換姿勢 · 準備第一個動作'}];
   ids.slice(0,4).forEach(id=>{segments.push({type:'work',id,seconds:work,round:1,target:MONDAY_REPS[id]});segments.push({type:'rest',seconds:rest,round:1,label:'休息 / 換動作'})});
   for(let set=1;set<=5;set++){segments.push({type:'work',id:'vacuum',seconds:20,round:0,set,target:`第 ${set} / 5 組 · 20 秒`});segments.push({type:'rest',seconds:10,round:0,label:set===5?'放鬆呼吸':'放鬆 / 組間休息'})}
   return {day:i+1,date:localDate(date),weekday:'一',weekend:false,monday:true,phase,light:false,ids,work,rest,rounds:1,segments,total:segments.reduce((sum,x)=>sum+x.seconds,0),title:'週一・五動作核心（建議早上做）',source:MONDAY_SOURCE};
  }
  if(date.getDay()===2){
-  const ids=orderExercises(SECOND_CHAPTERS.map(c=>c.id)),work=30+Math.min(phase,2)*5,rest=10;
+  const ids=['rockclimber',...SECOND_CHAPTERS.filter(c=>c.id!=='rockclimber').map(c=>c.id)],work=30+Math.min(phase,2)*5,rest=10;
   const segments=[{type:'work',id:'breath',seconds:30,round:0},{type:'rest',seconds:5,round:0,transition:true,label:'換姿勢 · 準備第一個動作'}];
   ids.forEach((id,j)=>{segments.push({type:'work',id,seconds:work,round:1});segments.push({type:'rest',seconds:rest,round:1,label:j===ids.length-1?'放鬆呼吸':'休息 / 換動作'})});
   return {day:i+1,date:localDate(date),weekday:'二',weekend:false,tuesday:true,phase,light:false,ids,work,rest,rounds:1,segments,total:segments.reduce((sum,x)=>sum+x.seconds,0),title:'週二・影片核心循環',source:SECOND_SOURCE};
+ }
+ if(date.getDay()===5&&[1,2].includes(phase)){
+  const ids=Object.keys(RUN_MOVES),segments=[];
+  for(let round=1;round<=3;round++){ids.forEach(id=>segments.push({type:'work',id,seconds:20,round}));segments.push({type:'rest',seconds:40,round,label:round===3?'休息 / 放鬆':'組間休息'})}
+  return {day:i+1,date:localDate(date),weekday:'五',weekend:false,phase,light:false,intervalFlow:true,ids,work:20,rest:40,rounds:3,segments,total:360,title:'登山跑・掌撐抬膝循環',source:RUN_SOURCE};
  }
  const friday=date.getDay()===5;
  const hj=friday&&phase===3;
@@ -127,7 +140,9 @@ function makePlan(start){return Array.from({length:30},(_,i)=>{
  const work=weekend?30:friday?20:(light?30:p.work),rest=weekend||friday?10:p.rest;
  const segments=[{type:'work',id:'breath',seconds:30,round:0},{type:'rest',seconds:5,round:0,transition:true,label:'換姿勢 · 準備第一個動作'}];
  for(let r=1;r<=rounds;r++)ids.forEach((id,j)=>{segments.push({type:'work',id,seconds:['plank','left','right'].includes(id)?45:work,round:r});segments.push({type:'rest',seconds:rest,round:r,label:r===rounds&&j===ids.length-1?'放鬆呼吸':'休息 / 換動作'})});
- if(weekend)segments.push({type:'rest',seconds:10,round:2,label:'放鬆呼吸'});
  return {day:i+1,date:localDate(date),weekday:['日','一','二','三','四','五','六'][date.getDay()],weekend,phase,light,hj,ids,work,rest,rounds,segments,total:segments.reduce((s,x)=>s+x.seconds,0),source:hj?HJ_SOURCE:weekend?null:RESEARCH_SOURCES[date.getDay()-3],title:hj?'體結健身・四動作核心':weekend?'週末穩定練習':friday?'20／10 核心循環':light?'輕量技術日':p.name};
 })}
 function clockText(seconds){return `${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`}
+
+// Local video convention: drop matching MP4 files into videos/.
+Object.values(EXERCISES).forEach(e=>{if(!e.video)e.video='videos/'+e.id+'.mp4'});
